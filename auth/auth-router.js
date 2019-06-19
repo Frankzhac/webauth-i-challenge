@@ -3,10 +3,8 @@ const bcrypt = require('bcryptjs');
 
 const Users = require('../users/users-model.js');
 
-router.get('/', (req, res) => {
-  res.send("It's alive!");
-});
 
+// ENDPOINTS BEGINS HERE
 router.post('/api/register', (req, res) => {
   let user = req.body;
 // generate hash from user password
