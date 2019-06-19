@@ -5,7 +5,7 @@ const Users = require('../users/users-model.js');
 
 
 // ENDPOINTS BEGINS HERE
-router.post('/api/register', (req, res) => {
+router.post('/register', (req, res) => {
   let user = req.body;
 // generate hash from user password
   const hash = bcrypt.hashSync(user.password, 10);
@@ -22,7 +22,7 @@ user.password = hash;
     });
 });
 
-router.post('/api/login', (req, res) => {
+router.post('/login', (req, res) => {
   let { username, password } = req.body;
 
   Users.findBy({ username })
@@ -39,13 +39,6 @@ router.post('/api/login', (req, res) => {
     });
 });
 
-router.get('/api/users', (req, res) => {
-  Users.find()
-    .then(users => {
-      res.json(users);
-    })
-    .catch(err => res.send(err));
-});
 
 router.get('/logout', (req, res) => {
   if (req.session) {

@@ -11,8 +11,8 @@ const usersRouter = require('../users/users-router.js');
 const server = express();
 
 const sessionConfig = {
-  name: 'monkey', // defaults to sid but it will reveal our stack
-  secret: 'banana foodbar, hello world', // use to encrypt/decrypt the cookie
+  name: 'lightsaber', // defaults to sid but it will reveal our stack
+  secret: 'Monkey footballer, hello world', // use to encrypt/decrypt the cookie
   cookie: {
     maxAge: 1000 * 60 * 60, // how long the session is valid for in ms (millisec)
     secure: false, // should be true in production. In use with https
@@ -23,7 +23,7 @@ const sessionConfig = {
 
   // add this to configure the way sessions are stored
   store: new KnexSessionStore({
-    knex: require('../database/dbConfig'),
+    knex: require('../data/dbConfig'),
     tableName: 'sessions', // if table that will store sessions inside your db
     sidfieldname: 'sid', // column that will hold session id, name it w.e we want
     createTable: true, // if table does not exist, create one for us
@@ -39,7 +39,7 @@ server.use('/api/auth', authRouter);
 server.use('/api/users', usersRouter);
 
 
-router.get('/', (req, res) => {
+server.get('/', (req, res) => {
   res.send("It's alive!");
 });
 
