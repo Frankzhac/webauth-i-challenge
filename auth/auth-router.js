@@ -47,5 +47,18 @@ router.get('/api/users', (req, res) => {
     .catch(err => res.send(err));
 });
 
+router.get('/logout', (req, res) => {
+  if (req.session) {
+    req.session.destroy(err => {
+      if (err) {
+        res.send('Not allowed to leave')
+      } else {
+        res.send('Logout successful');
+      }
+    });
+  } else {
+    res.end();
+  }
+});
 
 module.exports = router;
